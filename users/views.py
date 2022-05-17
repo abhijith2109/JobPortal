@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 
 # Create your views here.
 from users.forms import UserRegistrationForm,LoginForm
@@ -31,7 +31,7 @@ class SingnInView(FormView):
             if request.user.is_candidate:
                 return render(request,"candidatehome.html")
             else:
-                return render(request,"emphome.html")
+                return redirect("emp-home")
                 
 
            
