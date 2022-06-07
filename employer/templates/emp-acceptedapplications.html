@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css'>
+
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            {%for app in applications%}
+
+            <div class="card-header">
+
+            </div>
+
+            <div class="card" style="width: 18rem;">
+
+
+                <ul class="list-group list-group-flush">
+                     <li class="list-group-item">Applied Post : {{app.job.job_title }}</li>
+                    <li class="list-group-item">Applicant Name : {{app.applicant.first_name}}</li>
+                    <li class="list-group-item">Applied Date : {{app.date}}</li>
+
+                </ul>
+                <a href="{%url 'emp-applicantprofile' app.id%}" class="btn btn-outline-success">View Profile</a>
+
+                {%if app.status == "accepted" %}
+
+                <button type="submit" class="btn btn-primary" disabled><i class="bi bi-check-square-fill"></i> Accepted</button>
+                {%elif app.status == "applied" %}
+                <button type="button" class="btn btn-dark" disabled>Applied</button>
+                {%else%}
+                 <button type="button" class="btn btn-dark" disabled><i class="bi bi-x-square-fill"></i> Rejected</button>
+
+
+
+            </div>
+
+            {%endif%}
+            {%endfor%}
+
+
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>
+</body>
+</html>

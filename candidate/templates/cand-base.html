@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css'>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-light navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{%url 'cand-home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{%url 'cand-myappl' %}">My Appications</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Pricing</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled">Disabled</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-.5">
+            <a href="{%url 'cand-acceptedapplicaions' %}">
+                <span class='bi bi-bell ' style='color: red ;font-size: 2rem'></span>
+            </a></div>
+
+        <a href="{%url 'cand-viewprofile' %}">
+            <img class="rounded-circle border border-danger border-3 " alt="100x100"
+                 src="{{request.user.candidates.profile_pic.url}} "
+                 data-holder-rendered="true" alt="" width="50" height="50">
+        </a>
+
+
+    </div>
+    <div class="col p-3"></div>
+</nav>
+
+<div class="container-fluid">
+    {%block body_block%}
+
+    {%endblock%}
+</div>
+</body>
+</html>

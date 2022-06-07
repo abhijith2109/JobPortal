@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Document</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <div class="card-header">
+            </div>
+
+            <div class="card">
+
+                <img src="{{appl.applicant.candidates.profile_pic.url}}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Name : {{appl.applicant.first_name}}</li>
+                    <li class="list-group-item">Age : {{appl.applicant.candidates.age}}</li>
+                    <li class="list-group-item">Qualification : {{appl.applicant.candidates.qualification}}</li>
+                    <li class="list-group-item">Email : {{appl.applicant.email}}</li>
+                    <li class="list-group-item">Phone No : {{appl.applicant.phone}}</li>
+                    <li class="list-group-item">Skills : {{appl.applicant.candidates.skills}}</li>
+                    <li class="list-group-item">Cv : <a href="{{appl.applicant.candidates.cv.url}}">{{appl.applicant.candidates.cv}}</a>
+                    </li>
+
+                </ul>
+                <a href="{%url 'emp-acceptapplication' appl.id%}" class="btn btn-outline-success">Accept</a>
+                <a href="{%url 'emp-rejectapplication' appl.id%}" class="btn btn-outline-danger">Reject</a>
+            </div>
+
+
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>
+</body>
+</html>

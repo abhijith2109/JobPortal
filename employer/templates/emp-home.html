@@ -8,9 +8,27 @@
 <h1>Welcome Employer{{request.user}}</h1>
 
 {%if request.user.employers%}
-    <a href="">View Profile</a>
+<a href="{%url 'emp-detail'%}">View Profile</a>
 {%else%}
-    <a href="{%url 'emp-profile' %}">AddProfile</a>
+<a href="{%url 'emp-profile' %}">AddProfile</a>
 {%endif%}
+<a href="{%url 'emp-addjob' %}">Add Job</a>
+<a href="{%url 'emp-listjob' %}">Jobs</a>
+
+<div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+        {% if messages %}
+        {%for message in messages%}
+        {%if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+        <div class=" bg-info ">
+            {{message}}
+        </div>
+        {% endif %}%}
+        {%endfor%}
+        {% endif %}
+    </div>
+    <div class="col-4"></div>
+</div>
 </body>
 </html>

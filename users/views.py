@@ -29,7 +29,7 @@ class SingnInView(FormView):
                 return render(request,"login.html",{"form":form})
             login(request,user)
             if request.user.is_candidate:
-                return render(request,"candidatehome.html")
+                return redirect("cand-home")
             else:
                 return redirect("emp-home")
                 
