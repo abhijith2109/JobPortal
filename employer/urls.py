@@ -4,6 +4,7 @@ from employer import views
 urlpatterns=[
     path("ehome",views.EmployerHomeView.as_view(),name="emp-home"),
     path("profile/add",views.EmployerProfileCreateView.as_view(),name="emp-profile"),
+    path("profile/edit/<int:id>",views.EmployeeProfileEditView.as_view(),name="emp-editprofile"),
     path("profile/detail",views.EmployerProfileDetailView.as_view(),name="emp-detail"),
     path("jobs/add",views.JobCreateView.as_view(),name="emp-addjob"),
     path("jobs/all",views.EmployerJobListView.as_view(),name="emp-listjob"),

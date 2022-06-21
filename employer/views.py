@@ -23,6 +23,12 @@ class EmployerProfileCreateView(CreateView):
         form.instance.user=self.request.user
         return super().form_valid(form)
 
+class EmployeeProfileEditView(UpdateView):
+    model = EmployerProfile
+    form_class = EmployerProfileForm
+    template_name = "emp-editprofile.html"
+    success_url = reverse_lazy("emp-home")
+    pk_url_kwarg = "id"
 
 class EmployerProfileDetailView(TemplateView):
     template_name = "emp-viewprofile.html"

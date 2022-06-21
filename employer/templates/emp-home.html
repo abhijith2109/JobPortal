@@ -7,7 +7,7 @@
 <body>
 <h1>Welcome Employer{{request.user}}</h1>
 
-{%if request.user.employers%}
+{%if request.user.employer%}
 <a href="{%url 'emp-detail'%}">View Profile</a>
 {%else%}
 <a href="{%url 'emp-profile' %}">AddProfile</a>
@@ -18,15 +18,15 @@
 <div class="row">
     <div class="col-4"></div>
     <div class="col-4">
-        {% if messages %}
+        {% if messages%}
         {%for message in messages%}
         {%if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
         <div class=" bg-info ">
             {{message}}
         </div>
-        {% endif %}%}
+        {%endif%}
         {%endfor%}
-        {% endif %}
+        {%endif%}
     </div>
     <div class="col-4"></div>
 </div>

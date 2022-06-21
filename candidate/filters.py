@@ -9,7 +9,6 @@ class JobFilter(django_filters.FilterSet):
         model=Jobs
         fields=["posted_by",
                 "job_title",
-                "role",
                 "location",
                 "salary",
                 "qualification"]

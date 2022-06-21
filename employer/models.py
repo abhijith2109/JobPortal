@@ -6,23 +6,34 @@ from users.models import User
 class EmployerProfile(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE,related_name="employers")
     company_name=models.CharField(max_length=120)
-    bio=models.CharField(max_length=120)
+    about_us=models.TextField(null=True)
     logo=models.ImageField(upload_to="images")
-    location=models.CharField(max_length=60)
-    services=models.CharField(max_length=130)
+    address=models.TextField(max_length=260)
+    company_website=models.URLField(max_length=120)
+    services_choices = (
+        ("Advertising", "Advertising"),
+        ("ELectronics","ELectronics"),
+        ("Financial Sevices", "Financial Sevices"),
+        ("Market Reserarch", "Market Reserarch"),
+        ("Govt.Sectors", "Govt.Sectors"),
+        ("IT And Solutions", "IT And Solutions"),
+        ("Media & Entertainment","Media & Entertainment"),
+        ("Telecom Service","Telecom Service"),
+        ("Others","Others")
+    )
+    services=models.CharField(max_length=130,choices=services_choices,default="Advertising")
 
 
 class Jobs(models.Model):
     posted_by=models.ForeignKey(User,on_delete=models.CASCADE)
     job_title=models.CharField(max_length=120)
     job_description=models.TextField()
-    role=models.CharField(max_length=120)
     experiance=models.PositiveIntegerField(default=0)
     location=models.CharField(max_length=120)
     salary=models.PositiveIntegerField()
     created_date=models.DateField(auto_now_add=True)
-    last_date=models.DateField(null=True)
-    qualification=models.CharField(max_length=120,null=True)
+    last_date=models.DateField(null=True,blank=True)
+    qualification=models.CharField(max_length=120,null=True,blank=True)
 
 
     def __str__(self):
@@ -45,4 +56,5 @@ class Applications(models.Model):
              "applicant","job"
          )
          # unique_together -restrict multiple record of same pair
+         #ie one applicant -one job -one time add,
 

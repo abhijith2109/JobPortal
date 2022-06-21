@@ -1,26 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+{%load static%}
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <!--Custom styles-->
+    <link href="{%static 'css/register.css'%}" rel="stylesheet"/>
 
 </head>
 <body>
-<div class="container">
+
+<div class="container register">
     <div class="row">
-        <div class="col-4"></div>
-        <div class="col-4">
+        <div class="col-md-3 register-left">
+            <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+            <h3>Welcome</h3>
+            <p>You are 30 seconds away from earning your own money!</p>
+            <input type="submit" name="" value="Login"/><br/>
+        </div>
+
+        <div class="col-md-9 register-right">
             <form action="" method="post">
-                {%csrf_token%}
-                {{form.as_p}}
-                <input type="submit">
+                <div class="row register-form">
+                    <div class="col-md-6">
+                        {%csrf_token%}
+                        User Name
+                        <div class="form-group">
+                            {{form.username}}
+                        </div>
+                        Full Name
+                        <div class="form-group">
+                            {{form.first_name}}
+                        </div>
+                        Password
+                        <div class="form-group">
+                            {{form.password1}}
+                        </div>
+                        Re-enter Password
+                        <div class="form-group">
+                            {{form.password2}}
+                        </div>
+                        State
+                        <div class="form-group">
+                            {{form.state}}
+                        </div>
+                        Candidate/Employer
+                        <div class="form-group">
+                            {{form.role}}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        Email ID
+                        <div class="form-group">
+                            {{form.email}}
+                        </div>
+                        MobileNumber
+                        <div class="form-group">
+                            {{form.phone}}
+                        </div>
+                        <input type="submit" class="btnRegister" value="Register"/>
+                    </div>
+                </div>
             </form>
         </div>
-        <div class="col-4"></div>
-    </div>
-</div>
 
+    </div>
+
+</div>
 </body>
 </html>
