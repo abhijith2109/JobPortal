@@ -1,5 +1,6 @@
 from django.db import models
 from users.models import User
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 
@@ -27,7 +28,7 @@ class EmployerProfile(models.Model):
 class Jobs(models.Model):
     posted_by=models.ForeignKey(User,on_delete=models.CASCADE)
     job_title=models.CharField(max_length=120)
-    job_description=models.TextField()
+    job_description=RichTextField()
     experiance=models.PositiveIntegerField(default=0)
     location=models.CharField(max_length=120)
     salary=models.PositiveIntegerField()

@@ -1,88 +1,118 @@
-<!DOCTYPE html>
+<!doctype html>
 {%load static%}
 <html lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
-    <title>Simple Sidebar - Start Bootstrap Template</title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="{%static 'assets/favicon.ico'%}"/>
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="{%static 'css/styles.css'%}" rel="stylesheet"/>
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css'>
-</head>
-<body>
-<div class="d-flex" id="wrapper">
-    <!-- Sidebar-->
-    <div class="border-end bg-white" id="sidebar-wrapper">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+      <!--fontawesome-->
+       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+          <link rel="stylesheet" href="{%static 'css/cand-base.css'%}">
+
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+
+    <title>Navbar</title>
+  </head>
+
+
+  <body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="container-fluid px-lg-5">
+      <nav class="navbar navbar-expand-lg my-navbar">
+  <a class="navbar-brand" href="#"><span class="logo">
+    <img src="https://te.legra.ph/file/f5002a62e7e8735abb61d.png" class="img-fluid" style="width:150px; margin:0px 0px 0px 0px;"></span>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"><i class="fas fa-bars" style="margin:5px 0px 0px 0px;"></i></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav m-auto">
+
+      <li class="nav-item">
+        {%if request.user.candidates%}
+        <a class="nav-link" href="{%url 'cand-viewprofile' %}">View Profile</a>
+        {%else%}
+        <a class="nav-link" href="{%url 'cand-addprofile' %}">Add Profile</a>
+        {%endif%}
+
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="{%url 'cand-myappl' %}">My Applications</a>
+      </li>
+
+       <li class="nav-item">
+        <a class="nav-link" href="{%url 'cand-acceptedapplicaions' %}">Notifications</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{%url 'cand-home'%}">Home</a>
+      </li>
+
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <a href="{%url 'signout' %}" class="header-btn my-2 my-sm-0">Logout
+      </a>
+    </form>
+
+
+  </div>
+</nav>
 
     </div>
-    <!-- Page content wrapper-->
-    <div id="page-content-wrapper">
-        <!-- Top navigation-->
-        <nav class="navbar navbar-expand-lg bg-light navbar navbar-dark bg-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{%url 'cand-home' %}">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{%url 'cand-myappl' %}">My Appications</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">Pricing</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled">Disabled</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="col-.5">
-                    <a href="{%url 'cand-acceptedapplicaions' %}">
-                        <span class='bi bi-bell ' style='color: white ;font-size: 2rem'></span>
-                    </a></div>
-                  {%if request.user.candidates%}
-                <a href="{%url 'cand-viewprofile' %}">
-                    <img class="rounded-circle border border-danger border-3 " alt="100x100"
-                         src="{{request.user.candidates.profile_pic.url}} "
-                         data-holder-rendered="true" alt="" width="50" height="50">
-                </a>
-                {%else%}
-                 <a href="{%url 'cand-addprofile' %}">
-                   <span class="bi bi-person-circle"  style='color: white ;font-size: 2rem'></span>
-                 </a>
+  </div>
 
 
-                {%endif%}
-            </div>
-            <div class="col p-3">
-                <a href="{%url 'signout' %}" class="btn btn-primary">logout</a>
-            </div>
-        </nav>
+</header>
 
-        <!-- Page content-->
-        <div class="container-fluid">
-            {%block body_block%}
 
-            {%endblock%}
-        </div>
-    </div>
+
+<div class="main-content">
+  <div class="container-fluid">
+{%block body_block%}
+  {%endblock%}
 </div>
-<!-- Bootstrap core JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Core theme JS-->
-<script src="{%static 'js/scripts.js'%}"></script>
-</body>
+</div>
+
+
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js" ></script>
+  <script type="text/javascript">
+    $(function(){
+      var navbar = $('.header-inner');
+      $(window).scroll(function(){
+        if($(window).scrollTop() <=40){
+          navbar.removeClass('navbar-scroll');
+        }else{
+          navbar.addClass('navbar-scroll');
+        }
+      });
+    });
+  </script>
+
+
+
+
+  </body>
 </html>

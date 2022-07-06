@@ -1,5 +1,6 @@
 from django import forms
 from employer.models import EmployerProfile, Jobs
+from ckeditor.fields import CKEditorWidget
 
 
 class EmployerProfileForm(forms.ModelForm):

@@ -1,59 +1,138 @@
-<html>
-
+<!doctype html>
 {%extends 'cand-base.html'%}
-{%block body_block%}
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css"
+          integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous"/>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{%static 'css/cand-home.css'%}">
+</head>
 <body>
-<h1>Welcome {{request.user}}</h1>
-{%if request.user.candidates%}
-<a href="{%url 'cand-viewprofile' %}">View Profile</a>
-{%else%}
-<a href="{%url 'cand-addprofile' %}">Add Profile</a>
-{%endif%}
-<a href="">All Jobs</a>
-<a href="{%url 'cand-myappl' %}">My Applications</a>
-<a href="{%url 'cand-acceptedapplicaions' %}">Notifications</a>
-<div class="container">
 
+{%block body_block%}
+    <link rel="stylesheet" href="{%static 'css/cand-home.css'%}">
+
+<div class="container p-5">
     <div class="row mt-5">
-         <div class="col-1"></div>
-        <div class="col-10">
-            <form action="" method="get">
-                <div class="row">
-                    <div class="col-2">Job Title :{{filter.form.job_title}}</div>
-                    <div class="col-2">Job Role :{{filter.form.role}}</div>
-                    <div class="col-2">Location :{{filter.form.location}}</div>
-                    <div class="col-2">Salary :{{filter.form.salary}}</div>
-                    <div class="col-2">Qualification :{{filter.form.qualification}}</div>
-                    <div class="col mt-3" align="center"><input type="submit"></div>
-                </div>
-
-            </form>
-        </div>
-        <div class="col-1"></div>
-    </div>
-qs
-    <div class="row mt-5">
-        {%for job in filter.qs%}
-        <div class="col-3"></div>
-        <div class="col-6">
-            <div class="card text-bg-info mb-3" style="max-width: 50rem;">
-                <div class="card-header">{{job.job_title}}</div>
-                <div class="card-body">
-                    <h5 class="card-title">{{job.role}}</h5>
-                    <p class="card-text">{{job.posted_by.username}}</p>
-
-
-                </div>
-                <div class="card-footer bg-transparent border-success"><a href="{%url 'cand-detailjob' job.id%} "
-                                                                          class="btn btn-success">View</a></div>
+        <div class="col-lg-10 mx-auto mb-4">
+            <div class="section-title text-center ">
+                <h3 class="top-c-sep">Grow your career with us </h3>
+                <p>Lorem ipsum dolor sit detudzdae amet, rcquisc adipiscing elit. Aenean socada commodo
+                    ligaui egets dolor. Nullam quis ante tiam sit ame orci eget erovtiu faucid.</p>
             </div>
         </div>
-        <div class="col-3"></div>
-        {%endfor%}
     </div>
+
+    <div class="row">
+        <div class="col-lg-10 mx-auto">
+            <div class="career-search mb-60">
+
+                <form action="#" class="career-form mb-60"  method="get">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-3 my-3">
+                            <div class="input-group position-relative">
+                                <input type="text" class="form-control" placeholder="Enter Your Keywords" id="{{filter.form.job_title}}">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3 my-3">
+                            <div class="input-group position-relative">
+                                <input type="text" class="form-control" placeholder="Where ?" id="{{filter.form.location}}">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3 my-3">
+                            <div class="input-group position-relative">
+                                <input type="text" class="form-control" placeholder="Company" id="{{filter.form.company_name}}">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3 my-3">
+                            <button type="submit" class="btn btn-lg btn-block btn-light btn-custom" id="contact-submit">
+                                Search
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+
+                {%for job in filter.qs%}
+
+                <div class="filter-result">
+                    <p class="mb-30 ff-montserrat"></p>
+
+                    <div class="job-box d-md-flex align-items-center justify-content-between mb-30">
+                        <div class="job-left my-4 d-md-flex align-items-center flex-wrap">
+                            <div class="img-holder mr-md-4 mb-md-0 mb-4 mx-auto mx-md-0 d-md-none d-lg-flex">
+                                <img src="{{job.posted_by.employers.logo.url}}"style="width:100px; margin:-3px 0px 0px 0px;" alt="">
+                            </div>
+                            <div class="job-content">
+                                <h5 class="text-center text-md-left">{{job.job_title}}</h5>
+                                <ul class="d-md-flex flex-wrap text-capitalize ff-open-sans">
+                                    <li class="mr-md-4">
+                                        <i class="zmdi zmdi-pin mr-2"></i>Company : {{job.posted_by.employers.company_name}}
+                                    </li>
+                                    <li class="mr-md-4">
+                                        <i class="zmdi zmdi-money mr-2"></i>Location: {{job.location}}
+                                    </li>
+                                    <li class="mr-md-4">
+                                        <i class="zmdi zmdi-time mr-2"></i>
+                                    </li>
+                                </ul>
+                                <ul class="d-md-flex flex-wrap text-capitalize ff-open-sans">
+                                    <li class="mr-md-4">
+                                        <i class="zmdi zmdi-pin mr-2"></i>Experiance : {{job.experiance}}
+                                    </li>
+                                    <li class="mr-md-4">
+                                        <i class="zmdi zmdi-money mr-2"></i>Salary : {{job.salary}}
+                                    </li>
+                                    <li class="mr-md-4">
+                                        <i class="zmdi zmdi-time mr-2"></i>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="job-right my-4 flex-shrink-0">
+                            <a href="{%url 'cand-detailjob' job.id%}" class="btn d-block w-100 d-sm-inline-block btn-light">Apply now</a>
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+
+            <!-- START Pagination -->
+            <nav aria-label="Page navigation">
+                <ul class="pagination pagination-reset justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                            <i class="zmdi zmdi-long-arrow-left"></i>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item d-none d-md-inline-block"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item d-none d-md-inline-block"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">...</a></li>
+                    <li class="page-item"><a class="page-link" href="#">8</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">
+                            <i class="zmdi zmdi-long-arrow-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- END Pagination -->
+        </div>
+
+    </div>
+
 </div>
-
-</body>
 {%endblock%}
+</body>
 </html>
-

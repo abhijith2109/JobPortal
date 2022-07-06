@@ -1,8 +1,16 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
 body{
      background-image: linear-gradient(to bottom right, #5761B2, #1FC5A8);
     min-height: 100vh;
     vertical-align: middle;
-    display: flex;
+
+
 
 }
 .card{
